@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: The Music API
+  description: APIs for interacting with Deezer music service
+basePath: /api
+schemes:
+  - http
+  - https
+
+paths:
+  /search:
+    get:
+      summary: Search for tracks
+      parameters:
+        - name: q
+          in: query
+          description: Search query
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+        500:
+          description: Internal server error
+
+  /artist/{id}:
+    get:
+      summary: Get artist details by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+        404:
+          description: Artist not found
+        500:
+          description: Internal server error
+
+  /artist/{id}/top:
+    get:
+      summary: Get top tracks of an artist by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+        404:
+          description: Artist not found
+        500:
+          description: Internal server error
+
+  /artist/{id}/albums:
+    get:
+      summary: Get artist albums by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the artist
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+        404:
+          description: Artist not found
+        500:
+          description: Internal server error

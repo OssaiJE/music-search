@@ -1,0 +1,32 @@
+service: musicApi
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 2048
+  stage: prod
+  timeout: 20
+  region: eu-central-1
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+#    Define function environment variables here
+    environment:
+      NODE_ENV: production
+      DEEZER_API: https://api.deezer.com
+      logpath: ./logs/logfile
+      logpathDev: ./logs/logfileDev
+      logpathTest: ./logs/logfileTest
+
